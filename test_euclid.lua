@@ -24,29 +24,25 @@ function tableEquals(t1, t2)
   return true
 end
 
-e3_8 = Euclid:new()
-e3_8:compute(3, 8)
+e3_8 = newEuclid(3, 8)
 print(e3_8)
 if not tableEquals(e3_8.pattern, {1, 0, 0, 1, 0, 0, 1, 0}) then
   error("E(3,8) failed")
 end
 
-e5_8 = Euclid:new()
-e5_8:compute(5, 8)
+e5_8 = newEuclid(5, 8)
 print(e5_8)
 if not tableEquals(e5_8.pattern, {1, 0, 1, 1, 0, 1, 1, 0}) then
   error("E(5,8) failed")
 end
 
-e5_16 = Euclid:new()
-e5_16:compute(5, 16)
+e5_16 = newEuclid(5, 16)
 print(e5_8)
 if not tableEquals(e5_16.pattern, {1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0}) then
   error("E(5,16) failed")
 end
 
-e4_9 = Euclid:new()
-e4_9:compute(4, 9)
+e4_9 = newEuclid(4, 9)
 print(e4_9)
 if not tableEquals(e4_9.pattern, {1, 0, 1, 0, 1, 0, 1, 0, 0}) then
   error("E(4,9) failed")
