@@ -1,5 +1,9 @@
 function newEuclid(initialBeats, initialSteps)
 
+  if initialBeats > initialSteps then
+    error("initialBeats must be less than or equal to initialSteps")
+  end
+
   local self = {
     steps = initialSteps,
     beats = initialBeats,
@@ -13,7 +17,7 @@ function newEuclid(initialBeats, initialSteps)
     end
     return result
   end
-    
+  
   local tableMerge = function(t1, t2)
     for i = 1, #t2 do
       t1[#t1+1] = t2[i]
@@ -47,7 +51,7 @@ function newEuclid(initialBeats, initialSteps)
 
   remainders = buildT()
   -- for i, v in ipairs(remainders) do
-  --   print("r"..i, v)
+  --   print("r"..i .. " " .. v)
   -- end
 
   groups = {}
