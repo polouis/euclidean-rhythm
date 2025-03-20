@@ -1,5 +1,5 @@
-require "test_utils"
-require "euclid"
+require "test/test_utils"
+require "sound/euclid"
 
 function printGroups(groups)
   result = ""
