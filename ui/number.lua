@@ -6,7 +6,6 @@ function newUiNumber(value, x, y, min, max, label)
     y = y,
     min = min,
     max = max,
-    color = 7,
     state = uiState.Unfocused,
   }
 
@@ -42,11 +41,11 @@ function newUiNumber(value, x, y, min, max, label)
       text = text .. " : "
     end
     text = text .. self.value
-    print(text, self.x, self.y, self.color)
+    print(text, self.x, self.y, uiColor.text)
     if self.state == uiState.Focused then
-      rect(self.x - 1, self.y - 1, self.x -1 + #text * 4, self.y -1 + 6, 6)
+      rect(self.x - 1, self.y - 1, self.x -1 + #text * 4, self.y -1 + 6, uiColor.focused)
     elseif self.state == uiState.Edited then
-      rect(self.x - 1, self.y - 1, self.x -1 + #text * 4, self.y -1 + 6, 8)
+      rect(self.x - 1, self.y - 1, self.x -1 + #text * 4, self.y -1 + 6, uiColor.edited)
     end
   end
 

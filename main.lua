@@ -16,18 +16,18 @@ end
 
 function drawTrack(i, y)
   local track = seq.trackGet(i)
-  print("track " .. i, 1, y, 7)
-  print("mute: " .. tostring(track.getMute()), 1, y + 6, 7)
-  print("euclideanRhythm: " .. track.getEuclideanRhythm().steps .. ", " .. track.getEuclideanRhythm().beats, 1, y + 12, 7)
+  print("track " .. i, 1, y, uiColor.text)
+  print("mute: " .. tostring(track.getMute()), 1, y + 6, uiColor.text)
+  print("euclideanRhythm: " .. track.getEuclideanRhythm().steps .. ", " .. track.getEuclideanRhythm().beats, 1, y + 12, uiColor.text)
 end
 
 function _draw()
-  cls(3)
-  print("----------------", 32, 1, 7)
-  print("euclidean rhythm", 32, 7, 7)
-  print("----------------", 32, 13, 7)
+  cls(uiColor.background)
+  print("----------------", 32, 1, uiColor.text)
+  print("euclidean rhythm", 32, 7, uiColor.text)
+  print("----------------", 32, 13, uiColor.text)
   if not init then
-    print("initializing...", 32, 19, 7)
+    print("initializing...", 32, 19, uiColor.text)
     return
   end
   uiBpm.draw()
