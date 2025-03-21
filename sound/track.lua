@@ -34,13 +34,28 @@ function newTrack(initialChannel)
     self.euclideanRhythm = newEuclid(steps, beats)
   end
 
+  local getEuclideanRhythm = function()
+    return self.euclideanRhythm
+  end
+
   local setSfx = function(sfx)
     self.sfx = sfx
+  end
+
+  local setMute = function(mute)
+    self.mute = mute
+  end
+
+  
+  local getMute = function()
+    return self.mute
   end
 
   return {
     update = update,
     setEuclideanRhythm = setEuclideanRhythm,
     setSfx = setSfx,
-  }
+    getEuclideanRhythm = getEuclideanRhythm,
+    getMute = getMute,
+    setMute = setMute,}
 end

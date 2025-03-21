@@ -1,6 +1,8 @@
 pico-8 cartridge // http://www.pico-8.com
 version 42
 __lua__
+#include ui/state.lua
+#include ui/number.lua
 #include sound/sequencer.lua
 #include sound/track.lua
 #include sound/euclid.lua

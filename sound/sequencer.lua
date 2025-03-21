@@ -37,9 +37,18 @@ function newSequencer()
     return self.tracks[i]
   end
 
+  local setBpm = function(bpm)
+    self.bpm = bpm
+  end
+
+  local getBpm = function()
+    return self.bpm
+  end
+
   return {
     play = play,
     update = update,
     trackGet = trackGet,
-  }
+    getBpm = getBpm,
+    setBpm = setBpm,}
 end
