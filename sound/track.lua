@@ -7,7 +7,7 @@ function newTrack(initialChannel)
     -- public
     sfx = nil,
     mute = false,
-    euclideanRhythm = nil,
+    pattern = nil,
   }
 
   local update = function()
@@ -17,29 +17,33 @@ function newTrack(initialChannel)
     if self.sfx == nil then
       return
     end
-    if self.euclideanRhythm == nil then
+    if self.pattern == nil then
       return
     end
-    if self.euclideanRhythm.pattern[self.stepIndex] == 1 then
+    if self.pattern.data[self.stepIndex] == 1 then
       sfx(self.sfx, self.channel)
     else
     end
     self.stepIndex = self.stepIndex + 1
-    if self.stepIndex > #self.euclideanRhythm.pattern then
+    if self.stepIndex > #self.pattern.data then
       self.stepIndex = 1
     end
   end
 
-  local setEuclideanRhythm = function(steps, beats)
-    self.euclideanRhythm = newEuclid(steps, beats)
+  local setPattern = function(pattern)
+    self.pattern = pattern
   end
 
-  local getEuclideanRhythm = function()
-    return self.euclideanRhythm
+  local getPattern = function()
+    return self.pattern
   end
 
   local setSfx = function(sfx)
     self.sfx = sfx
+  end
+
+  local getSfx = function()
+    return self.sfx
   end
 
   local setMute = function(mute)
@@ -53,9 +57,11 @@ function newTrack(initialChannel)
 
   return {
     update = update,
-    setEuclideanRhythm = setEuclideanRhythm,
+    setPattern = setPattern,
+    getPattern = getPattern,
     setSfx = setSfx,
-    getEuclideanRhythm = getEuclideanRhythm,
+    getSfx = getSfx,
     getMute = getMute,
-    setMute = setMute,}
+    setMute = setMute,
+  }
 end

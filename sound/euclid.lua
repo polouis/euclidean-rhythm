@@ -7,12 +7,19 @@ function newEuclid(initialBeats, initialSteps)
   local self = {
     steps = initialSteps,
     beats = initialBeats,
-    pattern = {},
+    data = {},
   }
+
+  if initialBeats == 0 then
+    for i = 1, initialSteps do
+      self.data[i] = 0
+    end
+    return self
+  end
 
   local tostring = function()
     result = "E("..self.beats..","..self.steps..") = "
-    for i, v in ipairs(self.pattern) do
+    for i, v in ipairs(self.data) do
       result = result .. v .. " "
     end
     return result
@@ -74,7 +81,7 @@ function newEuclid(initialBeats, initialSteps)
 
   for i = 1, #groups do
     for j = 1, #groups[i] do
-      self.pattern[#self.pattern + 1] = groups[i][j]
+      self.data[#self.data + 1] = groups[i][j]
     end
   end
 

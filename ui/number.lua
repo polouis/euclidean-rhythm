@@ -38,7 +38,7 @@ function newUiNumber(value, x, y, min, max, label)
   local draw = function()
     local text = self.label
     if text ~= "" then
-      text = text .. " : "
+      text = text .. ":"
     end
     text = text .. self.value
     print(text, self.x, self.y, uiColor.text)
@@ -55,6 +55,10 @@ function newUiNumber(value, x, y, min, max, label)
 
   local setState = function(state)
     self.state = state
+  end
+
+  local setMax = function(max)
+    self.max = max
   end
 
   return {
