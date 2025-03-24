@@ -27,9 +27,9 @@ function newUiNumber(value, x, y, min, max, label)
     end
 
     if self.state == uiState.Edited then
-      if btnp(0, 0) then
+      if btnp(0, 0) or btnp(3, 0) then
         setValue(self.value - 1)
-      elseif btnp(1, 0) then
+      elseif btnp(1, 0) or btnp(2, 0) then
         setValue(self.value + 1)
       end
     end
