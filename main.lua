@@ -1,8 +1,15 @@
-init = false
+local init = false
 local uiTracks = {}
+local focusManager = nil
 
 function _init()
   seq = newSequencer()
+  focusManager = newFocusManager()
+  local grid = {}
+
+  uiBpm = newUiNumber(seq.getBpm(), 1, 19, 60, 240, "bpm")
+  uiBpm.setState(uiState.Focused)
+  add(grid, {uiBpm})
 
   for i = 1, 4 do
     seq.trackGet(i).setPattern(newEuclid(0, 0))
@@ -13,19 +20,21 @@ function _init()
     uiTrack["beats"] = newUiNumber(seq.trackGet(i).getSfx(), 1 + 4*6, 19 + i * 6, 0, 32, "beats")
     uiTrack["steps"] = newUiNumber(seq.trackGet(i).getSfx(), 1 + 4*6 + 4 + 4*6 + 4, 19 + i * 6, 0, 32, "steps")
     add(uiTracks, uiTrack)
+
+    add(grid, {uiTrack["sfx"], uiTrack["beats"], uiTrack["steps"]})
   end
 
   seq.trackGet(1).setPattern(newEuclid(4, 7))
   seq.trackGet(2).setPattern(newEuclid(3, 8))
   uiTracks[1].sfx.setValue(1)
   uiTracks[1].beats.setValue(4)
+  uiTracks[1].beats.setMax(7)
   uiTracks[1].steps.setValue(7)
   uiTracks[2].beats.setValue(3)
+  uiTracks[2].beats.setMax(8)
   uiTracks[2].steps.setValue(8)
 
-  uiBpm = newUiNumber(seq.getBpm(), 1, 19, 60, 240, "bpm")
-  uiBpm.setState(uiState.Focused)
-
+  focusManager.setGrid(grid)
   seq.play()
   init = true
 end
@@ -49,12 +58,18 @@ end
 
 function _update()
   seq.update()
+  focusManager.update()
+
   uiBpm.update()
   if uiBpm.getValue() ~= seq.getBpm() then
     seq.setBpm(uiBpm.getValue())
   end
 
   for i = 1, 4 do
+    uiTracks[i].sfx.update()
+    uiTracks[i].beats.update()
+    uiTracks[i].steps.update()
+
     if uiTracks[i].sfx.getValue() ~= seq.trackGet(i).getSfx() then
       seq.trackGet(i).setSfx(uiTracks[i].sfx.getValue())
     end

@@ -6,7 +6,7 @@ function newUiNumber(value, x, y, min, max, label)
     y = y,
     min = min,
     max = max,
-    state = uiState.Unfocused,
+    state = uiState.Normal,
   }
 
   local setValue = function(value)
@@ -57,6 +57,10 @@ function newUiNumber(value, x, y, min, max, label)
     self.state = state
   end
 
+  local getState = function()
+    return self.state
+  end
+
   local setMax = function(max)
     self.max = max
   end
@@ -67,5 +71,7 @@ function newUiNumber(value, x, y, min, max, label)
     draw = draw,
     update = update,
     setState = setState,
+    getState = getState,
+    setMax = setMax,
   }
 end

@@ -4,6 +4,7 @@ __lua__
 #include ui/color.lua
 #include ui/state.lua
 #include ui/number.lua
+#include ui/focusManager.lua
 #include sound/sequencer.lua
 #include sound/track.lua
 #include sound/euclid.lua
