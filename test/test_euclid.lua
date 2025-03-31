@@ -26,24 +26,30 @@ end
 
 e3_8 = newEuclid(3, 8)
 print(e3_8)
-if not tableEquals(e3_8.pattern, {1, 0, 0, 1, 0, 0, 1, 0}) then
+if not tableEquals(e3_8.data, {1, 0, 0, 1, 0, 0, 1, 0}) then
   error("E(3,8) failed")
 end
 
 e5_8 = newEuclid(5, 8)
 print(e5_8)
-if not tableEquals(e5_8.pattern, {1, 0, 1, 1, 0, 1, 1, 0}) then
+if not tableEquals(e5_8.data, {1, 0, 1, 1, 0, 1, 1, 0}) then
   error("E(5,8) failed")
 end
 
 e5_16 = newEuclid(5, 16)
 print(e5_8)
-if not tableEquals(e5_16.pattern, {1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0}) then
+if not tableEquals(e5_16.data, {1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0}) then
   error("E(5,16) failed")
 end
 
 e4_9 = newEuclid(4, 9)
 print(e4_9)
-if not tableEquals(e4_9.pattern, {1, 0, 1, 0, 1, 0, 1, 0, 0}) then
+if not tableEquals(e4_9.data, {1, 0, 1, 0, 1, 0, 1, 0, 0}) then
   error("E(4,9) failed")
+end
+
+e2_7 = newEuclid(2, 7)
+print(e2_7)
+if not tableEquals(e2_7.data, {1, 0, 0, 1, 0, 0, 0}) then
+  error("E(2,7) failed")
 end
