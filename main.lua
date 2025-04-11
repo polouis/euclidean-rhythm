@@ -7,7 +7,7 @@ function _init()
   focusManager = newFocusManager()
   local grid = {}
 
-  uiBpm = newUiNumber(seq.getBpm(), 1, 19, 60, 240, "bpm")
+  uiBpm = newUiNumber(200, 1, 19, 60, 240, "bpm")
   uiBpm.setState(uiState.Focused)
   add(grid, {uiBpm})
 
@@ -19,20 +19,24 @@ function _init()
     uiTrack["sfx"] = newUiNumber(seq.trackGet(i).getSfx(), 1, 19 + i * 6, 0, 63, "sfx")
     uiTrack["beats"] = newUiNumber(seq.trackGet(i).getSfx(), 1 + 4*6, 19 + i * 6, 0, 32, "beats")
     uiTrack["steps"] = newUiNumber(seq.trackGet(i).getSfx(), 1 + 4*6 + 4 + 4*6 + 4, 19 + i * 6, 0, 32, "steps")
+    uiTrack["pattern"] = newUiPattern(0, 19 + 6 * 5 + i * 7)
     add(uiTracks, uiTrack)
 
     add(grid, {uiTrack["sfx"], uiTrack["beats"], uiTrack["steps"]})
   end
 
-  seq.trackGet(1).setPattern(newEuclid(4, 7))
-  seq.trackGet(2).setPattern(newEuclid(3, 8))
-  uiTracks[1].sfx.setValue(1)
-  uiTracks[1].beats.setValue(4)
-  uiTracks[1].beats.setMax(7)
-  uiTracks[1].steps.setValue(7)
-  uiTracks[2].beats.setValue(3)
+  uiTracks[1].sfx.setValue(0)
+  uiTracks[1].beats.setValue(6)
+  uiTracks[1].beats.setMax(16)
+  uiTracks[1].steps.setValue(16)
+  uiTracks[2].sfx.setValue(1)
+  uiTracks[2].beats.setValue(2)
   uiTracks[2].beats.setMax(8)
   uiTracks[2].steps.setValue(8)
+  uiTracks[3].sfx.setValue(2)
+  uiTracks[3].beats.setValue(1)
+  uiTracks[3].beats.setMax(3)
+  uiTracks[3].steps.setValue(3)
 
   focusManager.setGrid(grid)
   seq.play()
@@ -53,6 +57,7 @@ function _draw()
     uiTracks[i].sfx.draw()
     uiTracks[i].beats.draw()
     uiTracks[i].steps.draw()
+    uiTracks[i].pattern.draw()
   end
 end
 
@@ -76,6 +81,7 @@ function _update()
 
     if uiTracks[i].beats.getValue() ~= seq.trackGet(i).getPattern().beats then
       seq.trackGet(i).setPattern(newEuclid(uiTracks[i].beats.getValue(), uiTracks[i].steps.getValue()))
+      uiTracks[i].pattern.setPattern(seq.trackGet(i).getPattern())
     end
 
     local actualSteps = seq.trackGet(i).getPattern().steps
@@ -88,6 +94,7 @@ function _update()
       -- If step count changes, max beat count must be changed too
       uiTracks[i].beats.setMax(desiredSteps)
       seq.trackGet(i).setPattern(newEuclid(uiTracks[i].beats.getValue(), desiredSteps))
+      uiTracks[i].pattern.setPattern(seq.trackGet(i).getPattern())
     end
 
   end
