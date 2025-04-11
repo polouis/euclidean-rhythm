@@ -62,15 +62,18 @@ function _draw()
 end
 
 function _update()
-  seq.update()
   focusManager.update()
-
+  
   uiBpm.update()
   if uiBpm.getValue() ~= seq.getBpm() then
     seq.setBpm(uiBpm.getValue())
   end
-
+  
   for i = 1, 4 do
+    if uiTracks[i].pattern.playIndex ~= seq.trackGet(i).getPlayIndex() then
+      uiTracks[i].pattern.setPlayIndex(seq.trackGet(i).getPlayIndex())
+    end
+    
     uiTracks[i].sfx.update()
     uiTracks[i].beats.update()
     uiTracks[i].steps.update()
@@ -98,5 +101,7 @@ function _update()
     end
 
   end
+
+  seq.update()
 
 end

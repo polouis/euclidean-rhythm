@@ -1,7 +1,7 @@
 function newTrack(initialChannel)
   local self = {
     -- private
-    stepIndex = 1,
+    stepIndex = 0,
     channel = initialChannel,
 
     -- public
@@ -20,13 +20,15 @@ function newTrack(initialChannel)
     if self.pattern == nil then
       return
     end
-    if self.pattern.data[self.stepIndex] == 1 then
-      sfx(self.sfx, self.channel)
-    else
-    end
     self.stepIndex = self.stepIndex + 1
     if self.stepIndex > #self.pattern.data then
       self.stepIndex = 1
+    end
+    if self.pattern.data[self.stepIndex] == 1 then
+      printh("    playing step " .. self.stepIndex, "euclid")
+
+      sfx(self.sfx, self.channel)
+    else
     end
   end
 
@@ -49,10 +51,13 @@ function newTrack(initialChannel)
   local setMute = function(mute)
     self.mute = mute
   end
-
   
   local getMute = function()
     return self.mute
+  end
+
+  local getPlayIndex = function()
+    return self.stepIndex
   end
 
   return {
@@ -63,5 +68,6 @@ function newTrack(initialChannel)
     getSfx = getSfx,
     getMute = getMute,
     setMute = setMute,
+    getPlayIndex = getPlayIndex,
   }
 end

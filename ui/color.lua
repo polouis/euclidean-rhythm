@@ -6,4 +6,5 @@ uiColor = {
 
   emptyStep = 0,
   filledStep = 7,
+  playStep = 9,
 }

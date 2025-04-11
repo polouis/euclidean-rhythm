@@ -3,6 +3,7 @@ function newUiPattern(x, y)
     pattern = nil,
     x = x,
     y = y,
+    playIndex = 1,
   }
 
   local setPattern = function(pattern)
@@ -25,11 +26,19 @@ function newUiPattern(x, y)
       else
         rect(x, y, x + stepWidth - 1, y + 5, uiColor.emptyStep)
       end
+      if i == self.playIndex then
+        rectfill(x+1, y+1, x + stepWidth - 2, y + 4, uiColor.playStep)
+      end
     end
+  end
+
+  local setPlayIndex = function(index)
+    self.playIndex = index
   end
 
   self.setPattern = setPattern
   self.draw = draw
+  self.setPlayIndex = setPlayIndex
 
   return self
 end
