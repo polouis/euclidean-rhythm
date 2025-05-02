@@ -53,3 +53,9 @@ print(e2_7)
 if not tableEquals(e2_7.data, {1, 0, 0, 1, 0, 0, 0}) then
   error("E(2,7) failed")
 end
+
+e11_16 = newEuclid(11, 16)
+print(e11_16)
+if not tableEquals(e11_16.data, {1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1}) then
+  error("E(11,16) failed")
+end

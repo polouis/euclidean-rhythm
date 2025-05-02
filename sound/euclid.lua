@@ -35,25 +35,21 @@ function newEuclid(initialBeats, initialSteps)
   local buildT = function()
     remainders = {}
 
-    zeros = self.steps - self.beats
-    if self.beats <= zeros then
-      while zeros >= self.beats do
-        add(remainders, self.beats)
-        zeros = zeros - self.beats
-      end
-    end
-    rPrev2 = self.steps
-    rPrev1 = self.beats
+    a = self.beats
+    b = self.steps - self.beats
+    k = min(a, b)
+    n = max(a, b)
+  
+    while k > 1 do
+      add(remainders, k)
+      a = k
+      b = n - k
 
-    while true do
-      r = rPrev2 % rPrev1
-      if r <= 1 then
-        return remainders
-      end
-      add(remainders, r)
-      rPrev2 = rPrev1
-      rPrev1 = r
+      k = min(a, b)
+      n = max(a, b)
     end
+  
+    return remainders
   end
 
   remainders = buildT()
