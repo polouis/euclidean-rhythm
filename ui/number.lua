@@ -49,29 +49,8 @@ function newUiNumber(value, x, y, min, max, label)
     end
   end
 
-  local getValue = function()
-    return self.value
-  end
+  self.draw = draw
+  self.update = update
+  return self
 
-  local setState = function(state)
-    self.state = state
-  end
-
-  local getState = function()
-    return self.state
-  end
-
-  local setMax = function(max)
-    self.max = max
-  end
-
-  return {
-    setValue = setValue,
-    getValue = getValue,
-    draw = draw,
-    update = update,
-    setState = setState,
-    getState = getState,
-    setMax = setMax,
-  }
 end

@@ -30,25 +30,8 @@ function newSequencer()
     end
   end
 
-  local trackGet = function(i)
-    if i < 1 or i > #self.tracks then
-      error("trackGet: i out of bounds", i)
-    end
-    return self.tracks[i]
-  end
+  self.play = play
+  self.update = update
+  return self
 
-  local setBpm = function(bpm)
-    self.bpm = bpm
-  end
-
-  local getBpm = function()
-    return self.bpm
-  end
-
-  return {
-    play = play,
-    update = update,
-    trackGet = trackGet,
-    getBpm = getBpm,
-    setBpm = setBpm,}
 end

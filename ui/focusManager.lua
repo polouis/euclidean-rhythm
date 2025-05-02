@@ -7,12 +7,12 @@ function newFocusManager()
 
   local setGrid = function(grid)
     if self.grid ~= nil then
-      self.grid[self.y][self.x].setState(uiState.Normal)
+      self.grid[self.y][self.x].state = uiState.Normal
     end
     self.grid = grid
     self.x = 1
     self.y = 1
-    self.grid[self.y][self.x].setState(uiState.Focused)
+    self.grid[self.y][self.x].state = uiState.Focused
   end
   
   local update = function()
@@ -20,8 +20,8 @@ function newFocusManager()
       return
     end
 
-    if self.grid[self.y][self.x].getState() == uiState.Focused then
-      self.grid[self.y][self.x].setState(uiState.Normal)
+    if self.grid[self.y][self.x].state == uiState.Focused then
+      self.grid[self.y][self.x].state = uiState.Normal
       if btnp(2, 0) then
         self.y = self.y - 1
       elseif btnp(3, 0) then
@@ -41,7 +41,7 @@ function newFocusManager()
       elseif self.x > #self.grid[self.y] then
         self.x = 1
       end
-      self.grid[self.y][self.x].setState(uiState.Focused)
+      self.grid[self.y][self.x].state = uiState.Focused
     end
   end
 

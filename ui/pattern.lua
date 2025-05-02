@@ -32,13 +32,8 @@ function newUiPattern(x, y)
     end
   end
 
-  local setPlayIndex = function(index)
-    self.playIndex = index
-  end
-
   self.setPattern = setPattern
   self.draw = draw
-  self.setPlayIndex = setPlayIndex
 
   return self
 end
