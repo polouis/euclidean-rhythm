@@ -36,9 +36,9 @@ function newUiNumber(value, x, y, min, max, label)
       text = text .. ":"
     end
     text = text .. self.value
-    print(text, self.x, self.y, uiColor.text)
+    print(text, self.x + 1, self.y + 1, uiColor.text)
     if self.state == uiState.Focused then
-      rect(self.x - 1, self.y - 1, self.x -1 + #text * 4, self.y -1 + 6, uiColor.focused)
+      rect(self.x, self.y, self.x + #text * uiParameters.charWidthSpaced, self.y + uiParameters.charHeightSpaced, uiColor.focused)
     end
   end
 
