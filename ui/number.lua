@@ -20,16 +20,11 @@ function newUiNumber(value, x, y, min, max, label)
   end
 
   local update = function()
-    if self.state == uiState.Focused and btnp(5, 0) then
-      self.state = uiState.Edited
-    elseif self.state == uiState.Edited and btnp(4, 0) then
-      self.state = uiState.Focused
-    end
 
-    if self.state == uiState.Edited then
-      if btnp(0, 0) or btnp(3, 0) then
+    if self.state == uiState.Focused then
+      if btnp(4, 0) then
         setValue(self.value - 1)
-      elseif btnp(1, 0) or btnp(2, 0) then
+      elseif btnp(5, 0) then
         setValue(self.value + 1)
       end
     end
@@ -44,8 +39,6 @@ function newUiNumber(value, x, y, min, max, label)
     print(text, self.x, self.y, uiColor.text)
     if self.state == uiState.Focused then
       rect(self.x - 1, self.y - 1, self.x -1 + #text * 4, self.y -1 + 6, uiColor.focused)
-    elseif self.state == uiState.Edited then
-      rect(self.x - 1, self.y - 1, self.x -1 + #text * 4, self.y -1 + 6, uiColor.edited)
     end
   end
 
