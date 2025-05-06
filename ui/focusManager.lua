@@ -1,4 +1,4 @@
-function newFocusManager()
+function newUiFocusManager()
   local self = {
     grid = nil,
     x = nil,

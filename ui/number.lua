@@ -22,9 +22,9 @@ function newUiNumber(value, x, y, min, max, label)
   local update = function()
 
     if self.state == uiState.Focused then
-      if btnp(4, 0) then
+      if btnp(4, 0) and self.value > self.min then
         setValue(self.value - 1)
-      elseif btnp(5, 0) then
+      elseif btnp(5, 0) and self.value < self.max then
         setValue(self.value + 1)
       end
     end

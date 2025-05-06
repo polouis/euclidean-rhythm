@@ -4,7 +4,7 @@ local focusManager = nil
 
 function _init()
   seq = newSequencer()
-  focusManager = newFocusManager()
+  focusManager = newUiFocusManager()
   local grid = {}
 
   local headerHeight = 19
@@ -17,8 +17,8 @@ function _init()
     seq.tracks[i].sfx = 0
 
     local uiTrack = {}    
-    uiTrack["sfx"] = newUiNumber(seq.tracks[i].sfx, 0, headerHeight + i * uiParameters.charHeightSpaced, 0, 63, "sfx")
-    uiTrack["beats"] = newUiNumber(seq.tracks[i].sfx, 6*uiParameters.charWidthSpaced, headerHeight + i * uiParameters.charHeightSpaced, 0, 32, "beats")
+    uiTrack["sfx"] = newUiNumber(seq.tracks[i].sfx, 0, headerHeight + i * uiParameters.charHeightSpaced, 0, 3, "sfx")
+    uiTrack["beats"] = newUiNumber(seq.tracks[i].sfx, 6*uiParameters.charWidthSpaced, headerHeight + i * uiParameters.charHeightSpaced, 0, 0, "beats")
     uiTrack["steps"] = newUiNumber(seq.tracks[i].sfx, 15*uiParameters.charWidthSpaced, headerHeight + i * uiParameters.charHeightSpaced, 0, 32, "steps")
     uiTrack["pattern"] = newUiPattern(0, headerHeight + 5*uiParameters.charHeightSpaced + i * uiParameters.trackHeightSpaced)
     add(uiTracks, uiTrack)
