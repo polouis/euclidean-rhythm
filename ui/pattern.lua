@@ -12,7 +12,7 @@ function newUiPattern(x, y)
 
   local draw = function()
     if self.pattern == nil then
-      print("no pattern", self.x, self.y, uiColor.text)
+      print("\f"..uiColor.text.."no pattern", self.x, self.y, uiColor.text)
       return
     end
 

@@ -7,8 +7,7 @@ function _init()
   focusManager = newUiFocusManager()
   local grid = {}
 
-  local headerHeight = 19
-  uiBpm = newUiNumber(200, 0, headerHeight, 60, 240, "bpm")
+  uiBpm = newUiNumber(200, 0, uiParameters.headerHeight, 60, 240, "bpm")
   uiBpm.state = uiState.Focused
   add(grid, {uiBpm})
 
@@ -17,10 +16,10 @@ function _init()
     seq.tracks[i].sfx = 0
 
     local uiTrack = {}    
-    uiTrack["sfx"] = newUiNumber(seq.tracks[i].sfx, 0, headerHeight + i * uiParameters.charHeightSpaced, 0, 5, "sfx")
-    uiTrack["beats"] = newUiNumber(seq.tracks[i].sfx, 6*uiParameters.charWidthSpaced, headerHeight + i * uiParameters.charHeightSpaced, 0, 0, "beats")
-    uiTrack["steps"] = newUiNumber(seq.tracks[i].sfx, 15*uiParameters.charWidthSpaced, headerHeight + i * uiParameters.charHeightSpaced, 0, 32, "steps")
-    uiTrack["pattern"] = newUiPattern(0, headerHeight + 5*uiParameters.charHeightSpaced + i * uiParameters.trackHeightSpaced)
+    uiTrack["sfx"] = newUiNumber(seq.tracks[i].sfx, 0, uiParameters.headerHeight + i * uiParameters.charHeightSpaced, 0, 5, "sfx")
+    uiTrack["beats"] = newUiNumber(seq.tracks[i].sfx, 6*uiParameters.charWidthSpaced, uiParameters.headerHeight + i * uiParameters.charHeightSpaced, 0, 0, "beats")
+    uiTrack["steps"] = newUiNumber(seq.tracks[i].sfx, 15*uiParameters.charWidthSpaced, uiParameters.headerHeight + i * uiParameters.charHeightSpaced, 0, 32, "steps")
+    uiTrack["pattern"] = newUiPattern(0, uiParameters.headerHeight + 5*uiParameters.charHeightSpaced + i * uiParameters.trackHeightSpaced)
     add(uiTracks, uiTrack)
 
     add(grid, {uiTrack["sfx"], uiTrack["beats"], uiTrack["steps"]})
@@ -46,9 +45,9 @@ end
 
 function _draw()
   cls(uiColor.background)
-  print("----------------", 32, 1, uiColor.text)
-  print("euclidean rhythm", 32, 7, uiColor.text)
-  print("----------------", 32, 13, uiColor.text)
+
+  spr(0, 0, 0, 13, 4)
+  
   if not init then
     return
   end

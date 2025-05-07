@@ -1,5 +1,5 @@
   uiParameters = {
-    headerHeight = 19,
+    headerHeight = 40,
 
     charWidth = 3,
     charHeight = 5,
